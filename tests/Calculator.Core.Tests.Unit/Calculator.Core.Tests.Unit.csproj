@@ -68,10 +68,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddOperationTests.cs" />
     <Compile Include="CalculatorTests.cs" />
-    <Compile Include="FormulaTests.cs" />
+    <Compile Include="DefaultParserTests.cs" />
+    <Compile Include="IntegerSymbolTests.cs" />
     <Compile Include="Op.cs" />
+    <Compile Include="OperatorSymbolTests.cs" />
+    <Compile Include="ParserExceptionTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SubtractOperationTests.cs" />
+    <Compile Include="SymbolExceptionTests.cs" />
+    <Compile Include="SymbolFactoryTests.cs" />
+    <Compile Include="SymbolStreamTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

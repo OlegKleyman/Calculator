@@ -4,7 +4,12 @@ namespace Calculator.Core
 {
     public abstract class Operation
     {
-        public abstract int Execute(int sum, int currentValue);
+        protected Operation(int value)
+        {
+            Value = value;
+        }
+
+        public int Value { get; }
 
         public abstract int Execute(int value);
     }

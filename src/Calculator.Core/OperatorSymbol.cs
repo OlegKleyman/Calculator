@@ -6,7 +6,7 @@ namespace Calculator.Core
     {
         public Operator Operator { get; }
 
-        public OperatorSymbol(Operator op)
+        public OperatorSymbol(Operator op) : base(op == Operator.Add ? "+" : "-")
         {
             Operator = op;
         }

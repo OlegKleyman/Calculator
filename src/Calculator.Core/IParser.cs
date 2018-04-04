@@ -1,7 +1,9 @@
-﻿namespace Calculator.Core
+﻿using System.Collections.Generic;
+
+namespace Calculator.Core
 {
     public interface IParser
     {
-        IFormula Parse(string formula);
+        IEnumerable<Operation> Parse(ISymbolStream stream);
     }
 }
