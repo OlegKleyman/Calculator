@@ -60,32 +60,32 @@ namespace Calculator.Core.Tests.Unit
                 {
                     new object[]
                     {
-                        GetFormula(1, (null, Op.Add)),
+                        GetFormula((1, Op.Add)),
                         1
                     },
                     new object[]
                     {
-                        GetFormula(1, (1, Op.Add), (null, Op.Add)),
+                        GetFormula((1, Op.Add), (1, Op.Add)),
                         2
                     },
                     new object[]
                     {
-                        GetFormula(24, (27, Op.Add), (10, Op.Add), (null, Op.Add)),
+                        GetFormula((24, Op.Add), (27, Op.Add), (10, Op.Add)),
                         61
                     },
                     new object[]
                     {
-                        GetFormula(24, (0, Op.Add), (10, Op.Add), (null, Op.Add)),
+                        GetFormula((24, Op.Add), (0, Op.Add), (10, Op.Add)),
                         34
                     },
                     new object[]
                     {
-                        GetFormula(1, (1, Op.Add), (null, Op.Subtract)),
+                        GetFormula((10, Op.Add), (10, Op.Subtract)),
                         0
                     },
                     new object[]
                     {
-                        GetFormula(24, (10, Op.Add), (14, Op.Subtract), (100, Op.Add), (null, Op.Add)),
+                        GetFormula((32, Op.Add), (10, Op.Add), (14, Op.Subtract), (100, Op.Add)),
                         128
                     },
                 };
@@ -93,21 +93,19 @@ namespace Calculator.Core.Tests.Unit
                 return cases;
             }
 
-            private static IFormula GetFormula(int seed, params (int? next, Op op)[] next)
+            private static IFormula GetFormula(params (int next, Op op)[] next)
             {
                 var formula = Substitute.For<IFormula>();
-                formula.CurrentValue.Returns(seed);
-
+                
                 var operations = next.Select(tuple =>
                 {
                     var operation = Substitute.For<Operation>();
-                    operation.Execute(Arg.Any<int>(), Arg.Any<int>()).Returns(info =>
+                    operation.Execute(Arg.Any<int>()).Returns(info =>
                     {
                         var x = (int) info[0];
-                        var y = (int)info[1];
 
-                        formula.CurrentValue.Returns(tuple.next);
-                        return tuple.op == Op.Add ? x + y : x - y;
+                        
+                        return tuple.op == Op.Add ? x + tuple.next : x - tuple.next;
                     });
 
                     return operation;

@@ -6,7 +6,5 @@ namespace Calculator.Core
     public interface IFormula
     {
         IEnumerable<Operation> Operations { get; }
-
-        int? CurrentValue { get; }
     }
 }

@@ -12,7 +12,7 @@ namespace Calculator.Core
 
             return formula.Operations
                 .Aggregate(0, (i, operation) => 
-                    operation.Execute(i, formula.CurrentValue ?? throw new InvalidOperationException()));
+                    operation.Execute(i));
         }
     }
 }

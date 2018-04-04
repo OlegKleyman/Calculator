@@ -69,6 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CalculatorTests.cs" />
+    <Compile Include="FormulaTests.cs" />
     <Compile Include="Op.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
