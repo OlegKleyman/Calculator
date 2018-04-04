@@ -43,6 +43,11 @@ namespace Calculator.Core.Tests.Unit
                     },
                     new object[]
                     {
+                        "-",
+                        new OperatorSymbol(Operator.Subtract)
+                    },
+                    new object[]
+                    {
                         "11",
                         new IntegerSymbol(11)
                     },
