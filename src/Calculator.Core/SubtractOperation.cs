@@ -1,6 +1,6 @@
 ﻿namespace Calculator.Core
 {
-    public class SubtractOperation:Operation
+    public class SubtractOperation : Operation
     {
         public SubtractOperation(int value) : base(value)
         {

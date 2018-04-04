@@ -10,10 +10,7 @@ namespace Calculator.Core
             if (stream == null) throw new ArgumentNullException(nameof(stream));
 
             var operations = new List<Operation>();
-            if (stream.Peek() is IntegerSymbol value)
-            {
-                operations.Add(new AddOperation(value.Value));
-            }
+            if (stream.Peek() is IntegerSymbol value) operations.Add(new AddOperation(value.Value));
 
             while (!stream.End)
             {

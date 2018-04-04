@@ -1,21 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Calculator.Core;
 
 namespace Calculator.App
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             var parser = new DefaultParser();
             var calculator = new Core.Calculator();
 
             var factory = new SymbolFactory();
-            
+
             var rawFormula = args.Length == 0 ? GetFormula() : args[0];
 
             do

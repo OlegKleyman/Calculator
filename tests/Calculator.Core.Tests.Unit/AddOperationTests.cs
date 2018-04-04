@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FluentAssertions;
+﻿using FluentAssertions;
 using Xunit;
 
 namespace Calculator.Core.Tests.Unit
 {
     public class AddOperationTests
     {
+        private AddOperation GetAddOperation(int value)
+        {
+            return new AddOperation(value);
+        }
+
         [Fact]
         public void ConstructorShouldSetValue()
         {
@@ -22,11 +22,6 @@ namespace Calculator.Core.Tests.Unit
         {
             var operation = GetAddOperation(1);
             operation.Execute(10).Should().Be(11);
-        }
-
-        private AddOperation GetAddOperation(int value)
-        {
-            return new AddOperation(value);
         }
     }
 }

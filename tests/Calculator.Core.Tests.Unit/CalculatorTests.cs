@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
 using NSubstitute;
-using NSubstitute.Core;
 using Xunit;
 
 namespace Calculator.Core.Tests.Unit
@@ -12,24 +10,14 @@ namespace Calculator.Core.Tests.Unit
     public class CalculatorTests
     {
         [Theory]
-        [MemberData(nameof(CalculatorTestsTheories.CalculateShouldReturnTheArithmeticResultOperationCalculations), MemberType = typeof(CalculatorTestsTheories))]
-        public void CalculateShouldReturnTheArithmeticResultOperationCalculations(IEnumerable<Operation> operations, int result)
+        [MemberData(nameof(CalculatorTestsTheories.CalculateShouldReturnTheArithmeticResultOperationCalculations),
+            MemberType = typeof(CalculatorTestsTheories))]
+        public void CalculateShouldReturnTheArithmeticResultOperationCalculations(IEnumerable<Operation> operations,
+            int result)
         {
             var calculator = GetCalculator();
 
             calculator.Calculate(operations).Should().Be(result);
-        }
-
-        [Fact]
-        public void CalculateShouldThrowArgumentNullExceptionWhenOperationsIsNull()
-        {
-            var calculator = GetCalculator();
-
-            Action calculate = () => calculator.Calculate((IEnumerable<Operation>) null);
-
-            calculate
-                .Should().Throw<ArgumentNullException>()
-                .Which.ParamName.Should().BeEquivalentTo("operations");
         }
 
         private Calculator GetCalculator()
@@ -46,7 +34,7 @@ namespace Calculator.Core.Tests.Unit
                     var operation = Substitute.For<Operation>(default(int));
                     operation.Execute(Arg.Any<int>()).Returns(info =>
                     {
-                        var x = (int)info[0];
+                        var x = (int) info[0];
 
 
                         return tuple.op == Op.Add ? x + tuple.next : x - tuple.next;
@@ -91,11 +79,23 @@ namespace Calculator.Core.Tests.Unit
                     {
                         GetOperations((32, Op.Add), (10, Op.Add), (14, Op.Subtract), (100, Op.Add)),
                         128
-                    },
+                    }
                 };
 
                 return cases;
             }
+        }
+
+        [Fact]
+        public void CalculateShouldThrowArgumentNullExceptionWhenOperationsIsNull()
+        {
+            var calculator = GetCalculator();
+
+            Action calculate = () => calculator.Calculate(null);
+
+            calculate
+                .Should().Throw<ArgumentNullException>()
+                .Which.ParamName.Should().BeEquivalentTo("operations");
         }
     }
 }

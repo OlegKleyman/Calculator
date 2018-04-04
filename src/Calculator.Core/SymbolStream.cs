@@ -16,19 +16,13 @@ namespace Calculator.Core
 
         public Symbol Next()
         {
-            if(End) throw new InvalidOperationException("End of stream has been reached");
+            if (End) throw new InvalidOperationException("End of stream has been reached");
 
             _formula = _formula.Trim();
-            var result= _factory.GetNext(_formula);
+            var result = _factory.GetNext(_formula);
 
-            if (result == null || _formula.Length <= result.RawValue.Length)
-            {
-                End = true;
-            }
-            else
-            {
-                _formula = _formula.Substring(result.RawValue.Length);
-            }
+            if (result == null || _formula.Length <= result.RawValue.Length) End = true;
+            else _formula = _formula.Substring(result.RawValue.Length);
 
             return result;
         }
@@ -37,7 +31,7 @@ namespace Calculator.Core
 
         public Symbol Peek()
         {
-            return !End ?_factory.GetNext(_formula.Trim()) : null;
+            return !End ? _factory.GetNext(_formula.Trim()) : null;
         }
     }
 }

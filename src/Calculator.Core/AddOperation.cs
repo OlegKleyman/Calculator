@@ -2,7 +2,7 @@
 {
     public class AddOperation : Operation
     {
-        public AddOperation(int value) :base(value)
+        public AddOperation(int value) : base(value)
         {
         }
 

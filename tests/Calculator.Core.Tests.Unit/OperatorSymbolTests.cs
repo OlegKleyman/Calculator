@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FluentAssertions;
+﻿using FluentAssertions;
 using Xunit;
 
 namespace Calculator.Core.Tests.Unit
@@ -11,11 +6,11 @@ namespace Calculator.Core.Tests.Unit
     public class OperatorSymbolTests
     {
         [Fact]
-        public void ConstructorShouldSetRawValueWithPlusWhenOperatorIsAdd()
+        public void ConstructorShouldSetOperator()
         {
-            var symbol = new OperatorSymbol(Operator.Add);
+            var symbol = new OperatorSymbol(Operator.Subtract);
 
-            symbol.RawValue.Should().BeEquivalentTo("+");
+            symbol.Operator.Should().Be(Operator.Subtract);
         }
 
         [Fact]
@@ -27,11 +22,11 @@ namespace Calculator.Core.Tests.Unit
         }
 
         [Fact]
-        public void ConstructorShouldSetOperator()
+        public void ConstructorShouldSetRawValueWithPlusWhenOperatorIsAdd()
         {
-            var symbol = new OperatorSymbol(Operator.Subtract);
+            var symbol = new OperatorSymbol(Operator.Add);
 
-            symbol.Operator.Should().Be(Operator.Subtract);
+            symbol.RawValue.Should().BeEquivalentTo("+");
         }
     }
 }
